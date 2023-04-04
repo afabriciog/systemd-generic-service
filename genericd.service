@@ -3,7 +3,7 @@ Description=Generic systemd service
 After=multi-user.target
 
 [Service]
-Type=simple
+Type=forking
 
 WorkingDirectory=/opt
 ExecStart=/opt/bin/genericd start
