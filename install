@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Config
+SERVICE_NAME=genericd
+DESTINATION_BIN=/opt/bin
+
+# Install
+echo "Installing systemd service"
+mkdir -p $DESTINATION_BIN
+cp ./$SERVICE_NAME $DESTINATION_BIN/
+cp -f ./$SERVICE_NAME.service /lib/systemd/system/
+systemctl daemon-reload
+
+echo "Enabling and starting service"
+systemctl enable --now $SERVICE_NAME.service
+systemctl start $SERVICE_NAME.service
+systemctl status $SERVICE_NAME.service
+
+# Uninstall
+if [ "$1" != "uninstall" ]; then
+    echo "Uninstalling systemd service..."
+    systemctl disable --now $SERVICE_NAME.service
+    rm -f /lib/systemd/system/$SERVICE_NAME.service
+    rm -f $DESTINATION_BIN/$SERVICE_NAME
+    systemctl daemon-reload
+fi

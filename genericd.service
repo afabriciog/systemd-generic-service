@@ -1,0 +1,13 @@
+[Unit]
+Description=Generic systemd service
+After=multi-user.target
+
+[Service]
+Type=simple
+
+WorkingDirectory=/opt
+ExecStart=/opt/bin/genericd start
+ExecStop=/opt/bin/genericd stop
+
+[Install]
+WantedBy=multi-user.target

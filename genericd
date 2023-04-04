@@ -1,0 +1,36 @@
+#!/bin/bash
+
+APP_NAME="genericd"
+
+start() {
+    echo "Starting $APP_NAME"
+    # do anything
+}
+
+stop() {
+  echo "Stopping $APP_NAME"
+  # do anything
+}
+
+restart() {
+    stop
+    start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  retart)
+    stop
+    start
+    ;;
+  status)
+    status
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+esac
